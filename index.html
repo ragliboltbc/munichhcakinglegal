@@ -12,43 +12,61 @@
   <nav class="navbar">
     <ul>
       <li><a href="#">Home</a></li>
-      <li><a href="#">Service</a></li>
-      <li><a href="#">Feature</a></li>
-      <li><a href="#">Product</a></li>
-      <li><a href="#">Testimonial</a></li>
-      <li><a href="#">FAQ</a></li>
-    </ul>
-    <div class="nav-buttons">
-      <a href="#" class="login">Login</a>
-      <a href="#" class="signup">Sign up</a>
-    </div>
+    <ur></ur>
+      <re><a href="#">Login</a></re>
+      <re><a href="#">Sign up - Become a part of the future!</a></re>
   </nav>
 </header>
-<main>
-  <section class="hero">
-    <h1>Compare your Contracts</h1>
-    <p>Upload the original and the new draft to identify differences and legal issues.</p>
-    <img src="img/contract-hero.jpg" alt="Contract Illustration" class="hero-image">
-  </section>
-  <section class="upload">
-    <h2>Upload Contracts</h2>
-    <form id="upload-form">
-      <div class="upload-buttons">
-        <label class="custom-upload">Upload Original
-          <input type="file" id="original-file">
-        </label>
-        <label class="custom-upload">Upload Draft
-          <input type="file" id="draft-file">
-        </label>
-      </div>
-      <button type="submit" class="analyze-button">Analyze</button>
-    </form>
-    <div class="contracts-display">
-      <textarea id="original-text" readonly placeholder="Original Contract Text..."></textarea>
-      <textarea id="draft-text" readonly placeholder="Draft Contract Text..."></textarea>
+
+<section class="upload">
+  <h2>Upload Contracts</h2>
+
+  <div class="contracts-display">
+    <div class="contract-upload">
+      <label class="custom-upload">
+        Upload Original
+        <input type="file" id="original-file" accept="application/pdf">
+      </label>
+      <object id="original-preview" type="application/pdf">
+        Original Contract preview will appear here
+      </object>
+    </div>
+
+    <div class="contract-upload">
+      <label class="custom-upload">
+        Upload Draft
+        <input type="file" id="draft-file" accept="application/pdf">
+      </label>
+      <object id="draft-preview" type="application/pdf">
+        Draft Contract preview will appear here
+      </object>
+    </div>
+  </div>
+
+  <div class="analyze-section">
+    <button id="analyze-button" class="analyze-button">Analyze</button>
+  </div>
+
+  <section class="review">
+    <h2>Legal Decision Making</h2>
+
+    <div class="legal-decision">
+      <textarea id="legal-decision-result" readonly placeholder="Result will appear here after analysis..."></textarea>
+    </div>
+
+    <div class="legal-review">
+      <a href="results.html" class="preview-button">Legal Review ➔</a>
     </div>
   </section>
-</main>
+
+</section>
+
+</section>
+
+
+
+
+
 <footer>
   <p>© 2025 Contract Analysis Tool</p>
 </footer>
@@ -63,6 +81,51 @@ document.getElementById('upload-form').addEventListener('submit', function(event
   }
   window.location.href = 'results.html';
 });
+
 </script>
+
+<script>
+  document.getElementById('original-file').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file && file.type === "application/pdf") {
+      const fileURL = URL.createObjectURL(file);
+      document.getElementById('original-preview').data = fileURL;
+    } else {
+      alert("Please upload a valid Original PDF file!");
+    }
+  });
+  
+  document.getElementById('draft-file').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file && file.type === "application/pdf") {
+      const fileURL = URL.createObjectURL(file);
+      document.getElementById('draft-preview').data = fileURL;
+    } else {
+      alert("Please upload a valid Draft PDF file!");
+    }
+  });
+  
+  document.getElementById('analyze-button').addEventListener('click', function() {
+    const resultField = document.getElementById('legal-decision-result');
+    const originalData = document.getElementById('original-preview').data;
+    const draftData = document.getElementById('draft-preview').data;
+  
+    if (!originalData || !draftData) {
+      alert("Please upload both contracts before analyzing!");
+      return;
+    }
+  
+    const isIdentical = Math.random() > 0.5;
+  
+    if (isIdentical) {
+      resultField.value = "✅ New Draft is legally legit. No changes required.";
+    } else {
+      resultField.value = "❌ The Draft has differences. Legal review and changes needed.";
+    }
+  });
+  </script>
+  
+  
+
 </body>
 </html>
