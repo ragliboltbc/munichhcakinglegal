@@ -1,22 +1,350 @@
-
-body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; }
-header { background-color: #2E3A59; padding: 20px; }
-.navbar ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
-.navbar ul li a { color: white; text-decoration: none; }
-main { padding: 40px; }
-.hero { text-align: center; margin-bottom: 40px; }
-.hero-image { width: 100%; max-width: 600px; height: auto; margin-top: 20px; border-radius: 10px; }
-.upload-buttons { display: flex; justify-content: center; gap: 20px; margin: 20px 0; }
-.custom-upload { background-color: #3DB8D4; color: white; padding: 10px 20px; border-radius: 8px; cursor: pointer; transition: background 0.3s; }
-.custom-upload:hover { background-color: #2A9DB0; }
-.custom-upload input { display: none; }
-.contracts-display { display: flex; justify-content: space-around; margin-top: 30px; }
-textarea { width: 45%; height: 250px; padding: 15px; border: 1px solid #ccc; resize: none; background-color: #eaeaea; }
-.analyze-button, .continue-button, .accept, .reject, .docx, .pdf { margin-top: 20px; padding: 10px 25px; border: none; border-radius: 5px; font-size: 16px; color: white; cursor: pointer; text-decoration: none; }
-.analyze-button { background-color: #28a745; }
-.continue-button { background-color: #007bff; }
-.accept { background-color: #28a745; }
-.reject { background-color: #dc3545; }
-.docx { background-color: #007bff; }
-.pdf { background-color: #dc3545; }
-footer { background-color: #2E3A59; color: white; text-align: center; padding: 20px; }
+/* Allgemein */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+  }
+  
+  /* Header */
+  header {
+    background-color: #2E3A59;
+    padding: 20px;
+  }
+  
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  /* Hauptbereich */
+  main {
+    padding: 40px;
+  }
+  
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .hero-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+  
+  /* Upload Bereich */
+  .upload-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  
+  .custom-upload {
+    background-color: #3DB8D4;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .custom-upload:hover {
+    background-color: #2A9DB0;
+  }
+  
+  .custom-upload input {
+    display: none;
+  }
+  
+  /* Textbereiche */
+  .contracts-display {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+  }
+  
+  .contract-upload object {
+    width: 400px;
+    height: 500px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+  }
+  
+  
+  .contract-upload textarea,
+  textarea {
+    width: 100%;
+    height: 250px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    background-color: #eaeaea;
+    resize: none;
+    margin-top: 10px;
+  }
+  
+  /* Analyze Bereich */
+  .analysis-check {
+    margin-top: 40px;
+    text-align: center;
+  }
+  
+  #analysis-result {
+    width: 90%;
+    height: 100px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    background-color: #eaeaea;
+    resize: none;
+    margin-bottom: 20px;
+  }
+  
+  /* Buttons */
+  .analyze-button, .continue-button, .accept, .reject, .docx, .pdf, .next, .preview-button {
+    margin-top: 20px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .analyze-button, .accept, .next {
+    background-color: #28a745;
+  }
+  
+  .continue-button, .docx, .preview-button {
+    background-color: #007bff;
+  }
+  
+  .reject, .pdf {
+    background-color: #dc3545;
+  }
+  
+  .preview-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Review Differences Seite */
+  .review-grid {
+    display: flex;
+    gap: 40px;
+    margin-top: 30px;
+  }
+  
+  .left-side, .right-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+  }
+  
+  /* Linke Seite */
+  .difference-text {
+    width: 100%;
+    height: 250px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    resize: none;
+  }
+  
+  /* Rechte Seite */
+  .suggestion-text, .legal-info-text {
+    width: 100%;
+    height: 120px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    resize: none;
+  }
+  
+  /* Recommendation Buttons */
+  .recommendation-buttons {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .next-button-wrapper {
+    margin-top: 10px;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #2E3A59;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+  .legal-decision {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  #legal-decision-result {
+    width: 90%;
+    height: 120px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    resize: none;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .legal-review {
+    text-align: center;
+    margin-top: 30px;
+  }
+  .contracts-display {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+  }
+  
+  .contract-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+  }
+  
+  .contract-upload label {
+    margin-bottom: 15px;
+  }
+  
+  .contract-upload object {
+    width: 100%;
+    height: 500px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+  }
+  
+  .analyze-section {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  #analyze-button {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #analyze-button:hover {
+    background-color: #218838;
+  }
+  
+  .review-grid {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+  }
+  
+  .left-side, .right-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    resize: none;
+    margin-bottom: 20px;
+  }
+  
+  .difference-text {
+    height: 250px;
+  }
+  
+  .suggestion-text, .legal-info-text {
+    height: 120px;
+  }
+  
+  .recommendation-buttons {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .accept, .reject, .next, .preview-button {
+    padding: 10px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .accept, .next {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .reject {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .preview-button {
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    margin-top: 30px;
+    display: inline-block;
+  }
+  
+  .preview-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .legal-review {
+    text-align: center;
+    margin-top: 40px;
+  }
+  .analyze-section {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px; /* NEW: a bit space after Analyze */
+  }
+  
+  .analyze-button {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .analyze-button:hover {
+    background-color: #218838;
+  }
+  
