@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contract Analysis Tool - Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Service</a></li>
+      <li><a href="#">Feature</a></li>
+      <li><a href="#">Product</a></li>
+      <li><a href="#">Testimonial</a></li>
+      <li><a href="#">FAQ</a></li>
+    </ul>
+    <div class="nav-buttons">
+      <a href="#" class="login">Login</a>
+      <a href="#" class="signup">Sign up</a>
+    </div>
+  </nav>
+</header>
+<main>
+  <section class="hero">
+    <h1>Compare your Contracts</h1>
+    <p>Upload the original and the new draft to identify differences and legal issues.</p>
+    <img src="img/contract-hero.jpg" alt="Contract Illustration" class="hero-image">
+  </section>
+  <section class="upload">
+    <h2>Upload Contracts</h2>
+    <form id="upload-form">
+      <div class="upload-buttons">
+        <label class="custom-upload">Upload Original
+          <input type="file" id="original-file">
+        </label>
+        <label class="custom-upload">Upload Draft
+          <input type="file" id="draft-file">
+        </label>
+      </div>
+      <button type="submit" class="analyze-button">Analyze</button>
+    </form>
+    <div class="contracts-display">
+      <textarea id="original-text" readonly placeholder="Original Contract Text..."></textarea>
+      <textarea id="draft-text" readonly placeholder="Draft Contract Text..."></textarea>
+    </div>
+  </section>
+</main>
+<footer>
+  <p>© 2025 Contract Analysis Tool</p>
+</footer>
+<script>
+document.getElementById('upload-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const original = document.getElementById('original-file').files[0];
+  const draft = document.getElementById('draft-file').files[0];
+  if (!original || !draft) {
+    alert("Please upload both contracts!");
+    return;
+  }
+  window.location.href = 'results.html';
+});
+</script>
+</body>
+</html>
